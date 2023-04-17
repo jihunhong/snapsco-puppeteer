@@ -1,5 +1,4 @@
 import { TARGET_URL } from './src/config';
-import { create } from './src/lib/api';
 import { launchBrowser } from './src/lib/puppeteer';
 import { getPrevDay } from './src/lib/time';
 import { crawl } from './src/lib/twitter';
