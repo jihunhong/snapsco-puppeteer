@@ -3,8 +3,12 @@ import { ALARM_MODAL_CLOSER, TWEETS } from '../selectors';
 import { delay } from './puppeteer';
 
 export const crawl = async (page: Page) => {
-  await page.waitForSelector(ALARM_MODAL_CLOSER, { timeout: 30_000 });
-  await page.click(ALARM_MODAL_CLOSER);
+  try {
+    await page.waitForSelector(ALARM_MODAL_CLOSER, { timeout: 30_000 });
+    await page.click(ALARM_MODAL_CLOSER);
+  } catch (err) {
+    console.warn('timeout waiting ALARM_MODAL_CLOSER... crawl continue');
+  }
   await page.waitForSelector(TWEETS);
   const tweets: Tweet[] = [];
 
