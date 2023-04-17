@@ -3,10 +3,13 @@ import { USER_AGENT } from '../config';
 
 export async function launchBrowser(): Promise<[Browser, Page]> {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
   });
   const page = await browser.newPage();
   await page.setUserAgent(USER_AGENT);
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': 'ko',
+  });
   return [browser, page];
 }
 

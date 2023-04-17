@@ -31,11 +31,11 @@ export const crawl = async (page: Page) => {
       };
     });
     if (!tweet) break;
-
     // 이미지 없는건 제외
     // datetime이 없는것 (광고 트윗) 제외
     if (tweet.photoLinks.length && tweet.images.length && tweet.datetime) tweets.push(tweet);
-
+    console.log(`collected tweet : ${tweet.userName}`);
+    
     await delay();
   }
   return tweets;
