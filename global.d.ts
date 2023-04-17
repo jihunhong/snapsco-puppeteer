@@ -4,4 +4,5 @@ interface Tweet {
   photoLinks: (string | null)[];
   images: (string | undefined)[];
   datetime: string | null | undefined;
+  url: string | null | undefined;
 }

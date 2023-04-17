@@ -11,16 +11,12 @@ import { crawl } from './src/lib/twitter';
     const { range: lastDay } = getPrevDay();
     await page.goto(TARGET_URL(lastDay));
     console.log(`started crawl this url : ${TARGET_URL(lastDay)}`);
-    const tweets = await crawl(page);
-    for (const t of tweets) {
-      await create(t);
-    }
-    page.close();
-    browser.close();
+    await crawl(page);
   } catch (err: any) {
     console.error(err?.message);
   } finally {
     page.close();
     browser.close();
+    process.exit(0);
   }
 })();
