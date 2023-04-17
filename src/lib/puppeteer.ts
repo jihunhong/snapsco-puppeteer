@@ -3,7 +3,7 @@ import { USER_AGENT } from '../config';
 
 export async function launchBrowser(): Promise<[Browser, Page]> {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
   await page.setUserAgent(USER_AGENT);
