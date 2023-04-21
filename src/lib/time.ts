@@ -8,12 +8,13 @@ import { getFirstItem } from './api';
 export const getPrevDay = () => {
   const current = new Date();
   const previousTime = new Date(current);
-  if (current.getHours() <= 12) {
+  console.log('current hour : ',current.getHours());
+  if (current.getHours() + 9 <= 12) {
     previousTime.setDate(current.getDate() - 1);
     // 오전에는 어제 데이터 가져오기 위해
     return { range: `until%3A${previousTime.getFullYear()}-${previousTime.getMonth() + 1}-${previousTime.getDate()}`, date: previousTime };
   }
-  if (current.getHours() > 12) {
+  if (current.getHours() + 9 > 12) {
     previousTime.setDate(current.getDate());
     // 오후에는 오늘 올라온 데이터 가져오기 위해
     return { range: `since%3A${previousTime.getFullYear()}-${previousTime.getMonth() + 1}-${previousTime.getDate()}`, date: previousTime };
