@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "crawl": "node ./dist/index.js",
+    "sync-dir": "cp cookies.json ./dist/cookies.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
