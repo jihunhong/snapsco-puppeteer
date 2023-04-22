@@ -25,3 +25,11 @@ jobs:
       - run: echo ${{ secrets.COOKIES }} | base64 --decode > ./cookies.json
       - run: npm run sync-dir
       - run: npm run crawl
+      
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always() # Pick up events even if the job fails or is canceled.
