@@ -9,7 +9,7 @@ puppeteer.use(StealthPlugin());
 
 export async function launchBrowser(): Promise<[Browser, Page]> {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
   const exist = fs.existsSync(path.join(__dirname, '../../cookies.json'));
