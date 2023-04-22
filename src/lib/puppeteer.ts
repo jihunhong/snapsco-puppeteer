@@ -1,15 +1,24 @@
 import { Browser, Page } from 'puppeteer';
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import fs from 'fs';
+import path from 'path';
 import { USER_AGENT } from '../config';
 
 puppeteer.use(StealthPlugin());
 
 export async function launchBrowser(): Promise<[Browser, Page]> {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
   });
   const page = await browser.newPage();
+  const exist = fs.existsSync(path.join(__dirname, '../../cookies.json'));
+  console.log(exist);
+  if (exist) {
+    const cookies = fs.readFileSync(path.join(__dirname, '../../cookies.json'));
+    const deserializedCookies = JSON.parse(cookies);
+    await page.setCookie(...deserializedCookies);
+  }
   await page.setUserAgent(USER_AGENT);
   await page.setExtraHTTPHeaders({
     'Accept-Language': 'ko',

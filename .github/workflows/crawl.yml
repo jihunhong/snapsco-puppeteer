@@ -22,4 +22,6 @@ jobs:
       - run: npm install
       - run: npx tsc
       - run: ls -al
+      - run: echo ${{ secrets.COOKIES }} | base64 --decode > ./cookies.json
+      - run: npm run sync-dir
       - run: npm run crawl
