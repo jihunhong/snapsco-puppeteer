@@ -15,7 +15,7 @@ export async function launchBrowser(): Promise<[Browser, Page]> {
   const exist = fs.existsSync(path.join(__dirname, '../../cookies.json'));
   console.log(exist);
   if (exist) {
-    const cookies = fs.readFileSync(path.join(__dirname, '../../cookies.json'));
+    const cookies = fs.readFileSync(path.join(__dirname, '../../cookies.json'), { encoding: 'utf8'});
     const deserializedCookies = JSON.parse(cookies);
     await page.setCookie(...deserializedCookies);
   }
