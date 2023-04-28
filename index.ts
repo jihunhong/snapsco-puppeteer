@@ -8,7 +8,7 @@ import { crawl } from './src/lib/twitter';
 
   try {
     const { range: lastDay } = getPrevDay();
-    await page.goto(TARGET_URL(lastDay), );
+    await page.goto(TARGET_URL(lastDay, 'marvelsnap deck'));
     console.log(`started crawl this url : ${TARGET_URL(lastDay)}`);
     await crawl(page);
   } catch (err: any) {
